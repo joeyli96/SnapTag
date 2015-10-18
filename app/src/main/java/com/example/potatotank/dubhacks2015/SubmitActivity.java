@@ -82,7 +82,7 @@ public class SubmitActivity extends AppCompatActivity {
 
                 Bitmap bitmap = BitmapFactory.decodeFile(file);
                 String base64 = FirebaseClient.encodeTobase64(bitmap);
-                f.ref.child("games/0/player1/lastImg").setValue(base64);
+                f.ref.child(f.findSelf()).setValue(base64);
             }
         });
     }

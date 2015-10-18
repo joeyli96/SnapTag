@@ -117,14 +117,14 @@ public class FirebaseClient {
         }
     }
 
-    public void findSelf() {
-//        if (this.user.equals(this.activeGame.child("player1").child("user").getValue())) {
-//
-//        }
+    public String findSelf() {
+        String self = this.isPOne ? "games/0/player1/lastImg" : "games/0/player2/lastImg";
+        return self;
     }
 
-    public void findOpponent() {
-
+    public String findOpponent() {
+        String opponent = this.isPOne ? "games/0/player2/lastImg" : "games/0/player1/lastImg";
+        return opponent;
     }
 
     //input are current user and with the taglist that current user's image generated
