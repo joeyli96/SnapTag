@@ -19,7 +19,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageView mImageView;
     private Bitmap mImageBitmap;
+    private boolean playerLoggedIn = false;
     public static int count = 0;
     String dir;
 
@@ -55,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
 //        final TextView textView = (TextView) findViewById(R.id.textView);
 //        Button capture = (Button) findViewById(R.id.button_camera);
+        Button loginP1 = (Button) findViewById(R.id.button_login1);
+        Button loginP2 = (Button) findViewById(R.id.button_login2);
+
         camera.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 //                textView.setText("Nice!");
@@ -72,6 +79,18 @@ public class MainActivity extends AppCompatActivity {
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
 
                 startActivityForResult(cameraIntent, 1);
+            }
+        });
+
+        loginP1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                tryLogin("demo","demopwd");
+            }
+        });
+
+        loginP2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                tryLogin("test","testtest");
             }
         });
     }
@@ -155,5 +174,35 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void tryLogin(String user, final String pwd) {
+        final String username = user;
+        final String password = pwd;
+
+        FirebaseClient.getInstance().ref.child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot user : snapshot.getChildren()) {
+
+                    if (username.equals(user.getKey())) {
+                        Log.d("status1", String.valueOf(playerLoggedIn));
+                        if (password.equals(user.child("pwd"))) {
+                            DataSnapshot games = user.child("games");
+
+                            playerLoggedIn = true;
+                            Log.d("status", String.valueOf(playerLoggedIn));
+                            break;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+        });
     }
 }
