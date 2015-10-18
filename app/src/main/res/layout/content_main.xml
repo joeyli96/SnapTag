@@ -9,28 +9,44 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main" tools:context=".MainActivity">
 
-    <TextView android:text="Snap Tag!" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="96dp"
-        android:id="@+id/textView" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Take Picture"
-        android:id="@+id/button_camera"
-        android:layout_marginTop="44dp"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="349dp"
+            android:id="@+id/imageView_logo"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+             />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take Picture"
+            android:id="@+id/button_camera"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="36dp"
+            android:layout_gravity="center_horizontal|bottom" />
 
-        android:layout_marginTop="45dp"
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:id="@+id/imageView"
 
-        android:scaleType="fitXY" />
+            android:layout_marginTop="45dp"
+
+            android:scaleType="fitXY"
+            android:layout_gravity="center" />
+
+        <ImageView
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:id="@+id/imageView_camera"
+            android:layout_gravity="center_horizontal|bottom" />
+    </FrameLayout>
 </RelativeLayout>
