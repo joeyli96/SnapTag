@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap mImageBitmap;
     public static int count = 0;
     String dir;
-    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         ImageView camera = (ImageView)  findViewById(R.id.imageView_camera);
         camera.setImageResource(R.drawable.camera_icon);
 
-        image = (ImageView) findViewById(R.id.imageView);
 //        final TextView textView = (TextView) findViewById(R.id.textView);
 //        Button capture = (Button) findViewById(R.id.button_camera);
         camera.setOnClickListener(new View.OnClickListener() {
@@ -126,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         String file = dir+count+".jpg";
         Bitmap bitmap1 = BitmapFactory.decodeFile(file);
-        image.setImageBitmap(bitmap1);
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
             Log.d("CameraDemo", "Pic saved");
@@ -135,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         Intent goToSubmitActivity = new Intent(getApplicationContext(), SubmitActivity.class);
         goToSubmitActivity.putExtra("KEY", file);
         startActivity(goToSubmitActivity);
+        finish();
     }
 
     @Override

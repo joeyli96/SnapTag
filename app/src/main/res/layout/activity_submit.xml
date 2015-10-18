@@ -23,7 +23,8 @@
 
             <Button android:id="@+id/button_submit" style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="0.24" android:text="Submit" />
+                android:layout_weight="0.24" android:text="Submit"
+                android:textColor="#ffffff" />
 
         </LinearLayout>
 

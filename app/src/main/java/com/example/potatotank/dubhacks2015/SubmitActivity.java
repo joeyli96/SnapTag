@@ -82,6 +82,7 @@ public class SubmitActivity extends AppCompatActivity {
     private void backToMain(){
         Intent goToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(goToMainActivity);
+        finish();
     }
 
     @Override
