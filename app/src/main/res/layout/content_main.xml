@@ -42,9 +42,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/check_p1"
-            android:layout_gravity="left|top"
+            android:layout_gravity="left|bottom"
             android:checked="true"
-            android:color="#37a0f4"/><![CDATA[
+            android:color="#37a0f4" /><![CDATA[
 
         />
 

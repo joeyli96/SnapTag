@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
+            // when box is checked, you are player 1s
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked)
             {
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     pOne = false;
                 }
+                System.out.println(pOne);
             }
         });
 
