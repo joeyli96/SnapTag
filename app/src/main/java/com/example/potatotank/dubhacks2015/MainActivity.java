@@ -34,15 +34,27 @@ public class MainActivity extends AppCompatActivity {
     String dir;
     ToggleButton one;
     ToggleButton two;
-//    private boolean pOne = true;
+    private boolean pOne;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Firebase.setAndroidContext(this);
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
+
         setContentView(R.layout.activity_main);
 
         Firebase myFirebaseRef = new Firebase("https://dubhacks2015.firebaseio.com/");
+
+        CheckBox cb = (CheckBox) findViewById(R.id.check_p1);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            pOne = extras.getBoolean("KEY");
+            if (pOne)
+                cb.setChecked(true);
+            else
+                cb.setChecked(false);
+        }
 
         //here, we are making a folder named picFolder to store pics taken by the camera using this application
         dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/picFolder/";
@@ -63,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
         // if it's your turn (consult Firebase)
 //         notification.setEnabled(true);
 //         notification.setVisibility(View.VISIBLE);
-
-        CheckBox cb = (CheckBox) findViewById(R.id.check_p1);
 
         cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
