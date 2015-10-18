@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -100,6 +101,20 @@ public class ReplyActivity extends AppCompatActivity {
     private void backToMain(){
         Intent goToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(goToMainActivity);
+        finish();
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String file = dir+count+".jpg";
+        Bitmap bitmap1 = BitmapFactory.decodeFile(file);
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            Log.d("CameraDemo", "Pic saved");
+        }
+        // goes to SubmitActivity
+        Intent goToSubmitActivity = new Intent(getApplicationContext(), SubmitActivity.class);
+        goToSubmitActivity.putExtra("KEY", file);
+        startActivity(goToSubmitActivity);
         finish();
     }
 

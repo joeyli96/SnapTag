@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         ImageView camera = (ImageView)  findViewById(R.id.imageView_camera);
         camera.setImageResource(R.drawable.camera_icon);
 
+        ImageView notification = (ImageView) findViewById(R.id.imageView_notification);
+        notification.setImageResource(R.drawable.notification_icon);
+
 //        final TextView textView = (TextView) findViewById(R.id.textView);
 //        Button capture = (Button) findViewById(R.id.button_camera);
         Button loginP1 = (Button) findViewById(R.id.button_login1);
@@ -73,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        notification.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+              // go to the reply activity
+                goToReply();
+                finish();
+            }
+        });
+
         loginP1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 tryLogin("demo","demopwd");
@@ -86,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void goToReply(){
+        Intent goToReplyActivity = new Intent(getApplicationContext(), ReplyActivity.class);
+        startActivity(goToReplyActivity);
+        finish();
+    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         String file = dir+count+".jpg";
