@@ -11,7 +11,6 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 
 public class FirebaseClient {
 
