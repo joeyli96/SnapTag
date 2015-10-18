@@ -34,8 +34,8 @@ public class RecognitionActivity extends Activity {
 
     // IMPORTANT NOTE: you should replace these keys with your own App ID and secret.
     // These can be obtained at https://developer.clarifai.com/applications
-    private static final String APP_ID = "vM05qo55uhZard2dL4BixmMm4WsHIl6CsGCTgS_7";
-    private static final String APP_SECRET = "rx4oPPiXiCWNRVcoJ0huLz02cKiQUZtq5JPVrhjM";
+    private static final String APP_ID = "ZPMfoZBIL_ZnTLucxgGwUnbHUqpvIHrupj74-SJT";
+    private static final String APP_SECRET = "yOFi72C4h4l9lbrF7aGI3YB8MlDWAmIYMoDArENz";
 
     private static final int CODE_PICK = 1;
 

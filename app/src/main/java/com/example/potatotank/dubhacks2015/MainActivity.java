@@ -48,12 +48,18 @@ public class MainActivity extends AppCompatActivity {
         File newdir = new File(dir);
         newdir.mkdirs();
 
+        ImageView logo = (ImageView)  findViewById(R.id.imageView_logo);
+        logo.setImageResource(R.drawable.snaptag_logo);
+
+        ImageView camera = (ImageView)  findViewById(R.id.imageView_camera);
+        camera.setImageResource(R.drawable.camera_icon);
+
         image = (ImageView) findViewById(R.id.imageView);
-        final TextView textView = (TextView) findViewById(R.id.textView);
+//        final TextView textView = (TextView) findViewById(R.id.textView);
         Button capture = (Button) findViewById(R.id.button_camera);
         capture.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                textView.setText("Nice!");
+//                textView.setText("Nice!");
                 // here, counter will be incremented each time,and the picture taken by camera will be stored as 1.jpg,2.jpg and likewise.
                 count++;
                 String file = dir+count+".jpg";
