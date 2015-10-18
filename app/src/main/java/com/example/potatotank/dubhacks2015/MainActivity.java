@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         image = (ImageView) findViewById(R.id.imageView);
         final TextView textView = (TextView) findViewById(R.id.textView);
         Button capture = (Button) findViewById(R.id.button_camera);
+        Button login = (Button) findViewById(R.id.button_login);
+
         capture.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 textView.setText("Nice!");
@@ -68,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
 
                 startActivityForResult(cameraIntent, 1);
+            }
+        });
+
+        login.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent goToLoginActivity = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(goToLoginActivity);
             }
         });
     }
