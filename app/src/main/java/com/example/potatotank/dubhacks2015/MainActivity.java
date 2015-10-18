@@ -57,12 +57,18 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView notification = (ImageView) findViewById(R.id.imageView_notification);
         notification.setImageResource(R.drawable.notification_icon);
+        notification.setEnabled(false);
+        notification.setVisibility(View.INVISIBLE);
+
+        // if it's your turn (consult Firebase)
+//         notification.setEnabled(true);
+//         notification.setVisibility(View.VISIBLE);
 
         CheckBox cb = (CheckBox) findViewById(R.id.check_p1);
 
         cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
-            // when box is checked, you are player 1s
+            // when box is checked, you are player 1
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked)
             {
