@@ -23,6 +23,25 @@
             android:scaleType="centerInside"
              />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Player 1"
+            android:id="@+id/button_login1"
+            android:layout_marginTop="224dp"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Player 2"
+            android:id="@+id/button_login2"
+            android:layout_marginTop="274dp"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true" />
+
+
         <ImageView
             android:layout_width="76dp"
             android:layout_height="76dp"

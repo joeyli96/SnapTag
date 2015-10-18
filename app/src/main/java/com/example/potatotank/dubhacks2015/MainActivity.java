@@ -7,30 +7,25 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    private ImageView mImageView;
-    private Bitmap mImageBitmap;
+    private boolean playerLoggedIn = false;
     public static int count = 0;
     String dir;
 
@@ -55,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
 //        final TextView textView = (TextView) findViewById(R.id.textView);
 //        Button capture = (Button) findViewById(R.id.button_camera);
+        Button loginP1 = (Button) findViewById(R.id.button_login1);
+        Button loginP2 = (Button) findViewById(R.id.button_login2);
+
         camera.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 //                textView.setText("Nice!");
@@ -74,52 +72,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(cameraIntent, 1);
             }
         });
-    }
 
-    String mCurrentPhotoPath;
-
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
-        return image;
-    }
-
-    private File setUpPhotoFile() throws IOException {
-        File f = createImageFile();
-        mCurrentPhotoPath = f.getAbsolutePath();
-
-        return f;
-    }
-
-    static final int REQUEST_TAKE_PHOTO = 1;
-
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-         File f = null;
-
-            try {
-                f = setUpPhotoFile();
-                mCurrentPhotoPath = f.getAbsolutePath();
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-            } catch (IOException e) {
-                e.printStackTrace();
-                f = null;
-                mCurrentPhotoPath = null;
+        loginP1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                tryLogin("demo","demopwd");
             }
+        });
 
-        startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+        loginP2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                tryLogin("test","testtest");
+            }
+        });
     }
+
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         String file = dir+count+".jpg";
@@ -155,5 +121,35 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void tryLogin(String user, final String pwd) {
+        final String username = user;
+        final String password = pwd;
+
+        FirebaseClient.getInstance().ref.child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot user : snapshot.getChildren()) {
+
+                    if (username.equals(user.getKey())) {
+                        Log.d("status1", String.valueOf(playerLoggedIn));
+                        if (password.equals(user.child("pwd"))) {
+                            DataSnapshot games = user.child("games");
+
+                            playerLoggedIn = true;
+                            Log.d("status", String.valueOf(playerLoggedIn));
+                            break;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+        });
     }
 }
