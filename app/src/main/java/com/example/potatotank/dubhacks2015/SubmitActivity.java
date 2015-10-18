@@ -73,7 +73,7 @@ public class SubmitActivity extends AppCompatActivity {
                 // submits the picture; this should check for tag-matching
                 Clarifaier clarifaier = new Clarifaier(file);
                 String[] tags = clarifaier.getTags();
-
+                FirebaseClient.getInstance().AddTags(tags);
                 tagText.setText(tags[0] + ", " + tags[1] + ", " + tags[2]);
             }
         });

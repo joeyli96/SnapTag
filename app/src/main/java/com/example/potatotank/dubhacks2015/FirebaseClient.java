@@ -84,28 +84,22 @@ public class FirebaseClient {
         }
     }
 
-    private void setTags(ArrayList<String> taglist, String usrid){
-        Firebase Rootref = new Firebase("https://dubhacks2015.firebaseio.com/");
-        Rootref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
+    public void AddTags(String[] tags){
+        Firebase client = FirebaseClient.getInstance().ref;
+        for(int i = 0; i < tags.length; i++) {
 
-                checkid = snapshot.child("games/0/player1/user").getValue().toString();
-            }
+            if(i == 0)
+                client.child("games/0/player1/tags/0").setValue(tags[i]);
+            else if(i == 1)
+                client.child("games/0/player1/tags/1").setValue(tags[i]);
+            else if(i == 2)
+                client.child("games/0/player1/tags/2").setValue(tags[i]);
+            else
+                System.out.println("Error: no tags");
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-            }
-        });
-
-        if (checkid == usrid) {
-            //set tag of player1 as taglist
-            Rootref.child("games/0/player1/tags").setValue(taglist);
-        }else{
-            Rootref.child("games/0/player2/tags").setValue(taglist);
         }
-
     }
+
     //input are current user and with the taglist that current user's image generated
 //    private boolean compareListwithTag(String usrid, ArrayList<String> taglist){
 //        Firebase Rootref = new Firebase("https://dubhacks2015.firebaseio.com/");
