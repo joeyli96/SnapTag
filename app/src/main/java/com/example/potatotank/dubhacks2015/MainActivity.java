@@ -13,7 +13,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ToggleButton;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -50,6 +52,17 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView notification = (ImageView) findViewById(R.id.imageView_notification);
         notification.setImageResource(R.drawable.notification_icon);
+
+        ToggleButton one = (ToggleButton) findViewById(R.id.toggle_player1);
+        one.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // The toggle is enabled
+                } else {
+                    // The toggle is disabled
+                }
+            }
+        });
 
 //        final TextView textView = (TextView) findViewById(R.id.textView);
 //        Button capture = (Button) findViewById(R.id.button_camera);
