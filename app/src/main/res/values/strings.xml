@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DubHacks2015</string>
+    <string name="app_name">Snap Tag</string>
     <string name="action_settings">Settings</string>
     <string name="select_image">Select Image</string>
     <string name="user_image">User image</string>
@@ -8,4 +8,5 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_reply">ReplyActivity</string>
+    <string name="title_activity_premain">PremainActivity</string>
 </resources>
