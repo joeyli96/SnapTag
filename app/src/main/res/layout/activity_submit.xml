@@ -29,10 +29,14 @@
         </LinearLayout>
 
         <TextView
+            android:background="#CCFFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView_tags"
-            android:layout_gravity="center_horizontal|top" />
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="60dp"
+            android:textSize="30sp"
+            android:textColor="#CC000000" />
 
 
     </FrameLayout>
