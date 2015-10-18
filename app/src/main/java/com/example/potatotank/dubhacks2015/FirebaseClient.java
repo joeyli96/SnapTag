@@ -18,7 +18,7 @@ public class FirebaseClient {
     Firebase ref;
     String user = "";
     String checkid = "";
-    public Firebase activeGame;
+    Firebase activeGame;
 
 
     public FirebaseClient() {
@@ -97,6 +97,16 @@ public class FirebaseClient {
                 System.out.println("Error: no tags");
 
         }
+    }
+
+    public void findSelf() {
+//        if (this.user.equals(this.activeGame.child("player1").child("user").getValue())) {
+//
+//        }
+    }
+
+    public void findOpponent() {
+
     }
 
     //input are current user and with the taglist that current user's image generated

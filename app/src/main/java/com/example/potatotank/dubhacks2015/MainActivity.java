@@ -75,8 +75,10 @@ public class MainActivity extends AppCompatActivity {
                 if (buttonView.isChecked()) {
                     //cb.setBackgroundColor(Color.BLUE);
                     pOne = true;
+                    tryLogin("demo","demopwd");
                 } else {
                     pOne = false;
+                    tryLogin("test","testtest");
                 }
             }
         });
