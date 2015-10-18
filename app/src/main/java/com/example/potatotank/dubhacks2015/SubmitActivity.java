@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * An activity that either lets the user "submit" their picture or go back to the main activity.
@@ -38,6 +39,8 @@ public class SubmitActivity extends AppCompatActivity {
     private View mContentView;
     private View mControlsView;
     private boolean mVisible;
+    private String file;
+    private TextView tagText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +52,11 @@ public class SubmitActivity extends AppCompatActivity {
         ImageView image = (ImageView) findViewById(R.id.imageView_submit);
         Button back = (Button) findViewById(R.id.button_back);
         Button submit = (Button) findViewById(R.id.button_submit);
+        tagText = (TextView) findViewById(R.id.textView_tags);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null){
-            String file = extras.getString("KEY");
+            file = extras.getString("KEY");
             Bitmap bitmap1 = BitmapFactory.decodeFile(file);
             image.setImageBitmap(bitmap1);
         }
@@ -67,7 +71,10 @@ public class SubmitActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // submits the picture; this should check for tag-matching
+                Clarifaier clarifaier = new Clarifaier(file);
+                String[] tags = clarifaier.getTags();
 
+                tagText.setText(tags[0] + ", " + tags[1] + ", " + tags[2]);
             }
         });
     }
