@@ -3,6 +3,7 @@ package com.example.potatotank.dubhacks2015;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private boolean playerLoggedIn = false;
     public static int count = 0;
     String dir;
+    ToggleButton one;
+    ToggleButton two;
+    private boolean pOne = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,21 +58,24 @@ public class MainActivity extends AppCompatActivity {
         ImageView notification = (ImageView) findViewById(R.id.imageView_notification);
         notification.setImageResource(R.drawable.notification_icon);
 
-        ToggleButton one = (ToggleButton) findViewById(R.id.toggle_player1);
-        one.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    // The toggle is enabled
+        CheckBox cb = (CheckBox) findViewById(R.id.check_p1);
+
+        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked)
+            {
+                if (buttonView.isChecked()) {
+                    //cb.setBackgroundColor(Color.BLUE);
+                    pOne = true;
                 } else {
-                    // The toggle is disabled
+                    pOne = false;
                 }
             }
         });
 
 //        final TextView textView = (TextView) findViewById(R.id.textView);
 //        Button capture = (Button) findViewById(R.id.button_camera);
-        Button loginP1 = (Button) findViewById(R.id.button_login1);
-        Button loginP2 = (Button) findViewById(R.id.button_login2);
 
         camera.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -97,17 +105,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loginP1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                tryLogin("demo","demopwd");
-            }
-        });
-
-        loginP2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                tryLogin("test","testtest");
-            }
-        });
     }
 
     private void goToReply(){

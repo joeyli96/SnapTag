@@ -38,23 +38,16 @@
             android:layout_gravity="center"
             android:layout_marginTop="110dp" />
 
-        <ToggleButton
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="One"
-            android:id="@+id/toggle_player1"
-            android:layout_gravity="left|center_vertical"
+            android:id="@+id/check_p1"
+            android:layout_gravity="left|top"
             android:checked="true"
-            android:layout_marginLeft="60dp "/>
+            android:color="#37a0f4"/><![CDATA[
 
-        <ToggleButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Two"
-            android:id="@+id/toggle_player2"
-            android:layout_gravity="right|center_vertical"
-            android:checked="false"
-            android:layout_marginRight="60dp" />
+        />
 
+    ]]>
     </FrameLayout>
 </RelativeLayout>
