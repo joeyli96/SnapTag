@@ -4,6 +4,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical"
               android:gravity="center"
+              android:background="@android:color/black"
               tools:context=".RecognitionActivity">
 
   <ImageView
@@ -13,6 +14,7 @@
       android:layout_weight="1"
       android:scaleType="centerCrop"
       android:contentDescription="@string/user_image"/>
+
 
   <TextView
       android:id="@+id/text_view"
