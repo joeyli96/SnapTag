@@ -88,6 +88,7 @@ public class RecognitionActivity extends Activity {
             } else {
                 textView.setText("Unable to load selected image.");
             }
+            bitmap.recycle();
         }
     }
 

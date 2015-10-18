@@ -45,6 +45,7 @@ public class Clarifaier {
                 return recognizeBitmap(bitmaps[0]);
             }
         }.execute(bitmap);
+        bitmap.recycle();
         try {
             result = (RecognitionResult) task.get();
         } catch (ExecutionException ex) {

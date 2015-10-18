@@ -75,8 +75,9 @@ public class ReplyActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String base64Image = (String) dataSnapshot.getValue();
                 Bitmap bitmap = FirebaseClient.decodeBase64(base64Image);
-                bitmap = Bitmap.createScaledBitmap(bitmap, 3000, 3000, true);
+                //bitmap = Bitmap.createScaledBitmap(bitmap, 3000, 3000, true);
                 image.setImageBitmap(bitmap);
+                bitmap.recycle();
             }
 
             @Override
@@ -126,7 +127,6 @@ public class ReplyActivity extends AppCompatActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         String file = dir+count+".jpg";
-        Bitmap bitmap1 = BitmapFactory.decodeFile(file);
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
             Log.d("CameraDemo", "Pic saved");
