@@ -17,7 +17,9 @@ public class FirebaseClient {
 
     private static FirebaseClient reference;
     Firebase ref;
+    String user = "";
     String checkid = "";
+    public Firebase activeGame;
 
 
     public FirebaseClient() {

@@ -127,20 +127,18 @@ public class MainActivity extends AppCompatActivity {
         final String username = user;
         final String password = pwd;
 
-        FirebaseClient.getInstance().ref.child("users").addValueEventListener(new ValueEventListener() {
+        FirebaseClient.getInstance().ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                for (DataSnapshot user : snapshot.getChildren()) {
+                DataSnapshot users = snapshot.child("users");
+                for (DataSnapshot user : users.getChildren()) {
+                    if (username.equals(user.child("name").getValue()) && password.equals(user.child("pwd").getValue())) {
+                        DataSnapshot games = user.child("games");
 
-                    if (username.equals(user.getKey())) {
-                        Log.d("status1", String.valueOf(playerLoggedIn));
-                        if (password.equals(user.child("pwd"))) {
-                            DataSnapshot games = user.child("games");
-
-                            playerLoggedIn = true;
-                            Log.d("status", String.valueOf(playerLoggedIn));
-                            break;
-                        }
+                        playerLoggedIn = true;
+                        FirebaseClient.getInstance().activeGame = games.getRef();
+                        FirebaseClient.getInstance().user = username;
+                        Log.d("status", String.valueOf(username));
                         break;
                     }
                 }
