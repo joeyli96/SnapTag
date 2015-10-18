@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     pOne = false;
                 }
-                System.out.println(pOne);
             }
         });
 
