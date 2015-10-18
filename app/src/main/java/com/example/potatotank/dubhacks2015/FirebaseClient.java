@@ -16,6 +16,7 @@ public class FirebaseClient {
 
     private static FirebaseClient reference;
     Firebase ref;
+    boolean isPOne = true;
     String user = "";
     String checkid = "";
     Firebase activeGame;

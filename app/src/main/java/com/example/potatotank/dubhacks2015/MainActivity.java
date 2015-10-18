@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     String dir;
     ToggleButton one;
     ToggleButton two;
-    private boolean pOne = true;
+//    private boolean pOne = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
             {
                 if (buttonView.isChecked()) {
                     //cb.setBackgroundColor(Color.BLUE);
-                    pOne = true;
+                    FirebaseClient.getInstance().isPOne = true;
                     tryLogin("demo","demopwd");
                 } else {
-                    pOne = false;
+                    FirebaseClient.getInstance().isPOne = false;
                     tryLogin("test","testtest");
                 }
             }
