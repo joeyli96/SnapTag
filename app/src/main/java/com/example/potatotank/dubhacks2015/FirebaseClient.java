@@ -16,9 +16,10 @@ public class FirebaseClient {
 
     private static FirebaseClient reference;
     Firebase ref;
+    boolean isPOne = true;
     String user = "";
     String checkid = "";
-    public Firebase activeGame;
+    Firebase activeGame;
 
 
     public FirebaseClient() {
@@ -85,18 +86,45 @@ public class FirebaseClient {
 
     public void AddTags(String[] tags){
         Firebase client = FirebaseClient.getInstance().ref;
-        for(int i = 0; i < tags.length; i++) {
+        if(isPOne == true) {
+            for (int i = 0; i < tags.length; i++) {
 
-            if(i == 0)
-                client.child("games/0/player1/tags/0").setValue(tags[i]);
-            else if(i == 1)
-                client.child("games/0/player1/tags/1").setValue(tags[i]);
-            else if(i == 2)
-                client.child("games/0/player1/tags/2").setValue(tags[i]);
-            else
-                System.out.println("Error: no tags");
+                if (i == 0)
+                    client.child("games/0/player1/tags/0").setValue(tags[i]);
+                else if (i == 1)
+                    client.child("games/0/player1/tags/1").setValue(tags[i]);
+                else if (i == 2)
+                    client.child("games/0/player1/tags/2").setValue(tags[i]);
+                else
+                    System.out.println("Error: no tags");
+
+            }
+        }
+        else{
+            for (int i = 0; i < tags.length; i++) {
+
+                if (i == 0)
+                    client.child("games/0/player2/tags/0").setValue(tags[i]);
+                else if (i == 1)
+                    client.child("games/0/player2/tags/1").setValue(tags[i]);
+                else if (i == 2)
+                    client.child("games/0/player2/tags/2").setValue(tags[i]);
+                else
+                    System.out.println("Error: no tags");
+
+            }
 
         }
+    }
+
+    public void findSelf() {
+//        if (this.user.equals(this.activeGame.child("player1").child("user").getValue())) {
+//
+//        }
+    }
+
+    public void findOpponent() {
+
     }
 
     //input are current user and with the taglist that current user's image generated
