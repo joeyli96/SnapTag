@@ -48,5 +48,12 @@
             android:id="@+id/imageView_camera"
             android:layout_gravity="center_horizontal|bottom"
             android:layout_marginBottom="20dp"/>
+
+        <ImageView
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:id="@+id/imageView_notification"
+            android:layout_gravity="center"
+            android:layout_marginTop="110dp" />
     </FrameLayout>
 </RelativeLayout>
