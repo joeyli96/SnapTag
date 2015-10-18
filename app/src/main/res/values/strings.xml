@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">DubHacks2015</string>
     <string name="action_settings">Settings</string>
-
+    <string name="select_image">Select Image</string>
+    <string name="user_image">User image</string>
     <string name="title_activity_submit">SubmitActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
