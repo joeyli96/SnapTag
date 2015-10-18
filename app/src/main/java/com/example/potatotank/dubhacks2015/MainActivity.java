@@ -161,6 +161,10 @@ public class MainActivity extends AppCompatActivity {
             Log.d("CameraDemo", "Pic saved");
         }
 //        galleryAddPic();
+        // goes to SubmitActivity
+        Intent goToSubmitActivity = new Intent(getApplicationContext(), SubmitActivity.class);
+        goToSubmitActivity.putExtra("KEY", file);
+        startActivity(goToSubmitActivity);
     }
 
     private void setPic() {

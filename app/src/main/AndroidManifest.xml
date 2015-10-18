@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.potatotank.dubhacks2015" >
-    <uses-feature android:name="android.hardware.camera"
-                                android.required="true" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android.required="true" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -20,6 +23,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SubmitActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_submit"
+            android:theme="@style/FullscreenTheme" >
         </activity>
     </application>
 
