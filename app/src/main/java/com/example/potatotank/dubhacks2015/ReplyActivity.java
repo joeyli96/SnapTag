@@ -70,7 +70,7 @@ public class ReplyActivity extends AppCompatActivity {
 
         // get picture and tags from Firebase here
         FirebaseClient f = FirebaseClient.getInstance();
-        f.ref.child("games/0/player1/lastImg").addValueEventListener(new ValueEventListener() {
+        f.ref.child(f.findSelf()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String base64Image = (String) dataSnapshot.getValue();
