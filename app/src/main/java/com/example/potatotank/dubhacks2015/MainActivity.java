@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 if (buttonView.isChecked()) {
                     //cb.setBackgroundColor(Color.BLUE);
                     pOne = true;
-                    FirebaseClient.getInstance().activeGame = games.getRef();
                     tryLogin("demo","demopwd");
                 } else {
                     pOne = false;
