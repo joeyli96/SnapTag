@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ToggleButton one;
     ToggleButton two;
 //    private boolean pOne = true;
+    ImageView notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Firebase myFirebaseRef = new Firebase("https://dubhacks2015.firebaseio.com/");
+        final Firebase myFirebaseRef = new Firebase("https://dubhacks2015.firebaseio.com/");
 
         //here, we are making a folder named picFolder to store pics taken by the camera using this application
         dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/picFolder/";
@@ -55,12 +56,14 @@ public class MainActivity extends AppCompatActivity {
         ImageView camera = (ImageView)  findViewById(R.id.imageView_camera);
         camera.setImageResource(R.drawable.camera_icon);
 
-        ImageView notification = (ImageView) findViewById(R.id.imageView_notification);
+        notification = (ImageView) findViewById(R.id.imageView_notification);
         notification.setImageResource(R.drawable.notification_icon);
         notification.setEnabled(false);
         notification.setVisibility(View.INVISIBLE);
 
-        // if it's your turn (consult Firebase)
+
+//        if (myFirebaseRef.child("games/0/nextTurn").toString())
+
 //         notification.setEnabled(true);
 //         notification.setVisibility(View.VISIBLE);
 
@@ -80,7 +83,26 @@ public class MainActivity extends AppCompatActivity {
                     FirebaseClient.getInstance().isPOne = false;
                     tryLogin("test","testtest");
                 }
+
+                // if it's your turn (consult Firebase)
+                myFirebaseRef.child("games/0/nextTurn").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        String nextTurn = snapshot.getValue().toString();
+
+                        if ((FirebaseClient.getInstance().isPOne && nextTurn.equals("demo")) ||
+                                !FirebaseClient.getInstance().isPOne && nextTurn.equals("test")) {
+                            notification.setEnabled(true);
+                            notification.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+                    }
+                });
             }
+
         });
 
 //        final TextView textView = (TextView) findViewById(R.id.textView);
