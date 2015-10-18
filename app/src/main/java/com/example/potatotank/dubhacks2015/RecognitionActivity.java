@@ -22,6 +22,7 @@ import com.clarifai.api.exception.ClarifaiException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.String;
 
 import static android.provider.MediaStore.Images.Media;
 
@@ -138,7 +139,11 @@ public class RecognitionActivity extends Activity {
                 for (Tag tag : result.getTags()) {
                     b.append(b.length() > 0 ? ", " : "").append(tag.getName());
                 }
-                textView.setText("Tags:\n" + b);
+                String result1 = b.toString();
+                int i = result1.indexOf(',', 1 + result1.indexOf(',', 1 + result1.indexOf(',')));
+                result1 = result1.substring(0,i);
+
+                textView.setText("Tags:\n" + result1);
             } else {
                 Log.e(TAG, "Clarifai: " + result.getStatusMessage());
                 textView.setText("Sorry, there was an error recognizing your image.");
