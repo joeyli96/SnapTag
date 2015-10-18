@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         image = (ImageView) findViewById(R.id.imageView);
 //        final TextView textView = (TextView) findViewById(R.id.textView);
-        Button capture = (Button) findViewById(R.id.button_camera);
-        capture.setOnClickListener(new View.OnClickListener() {
+//        Button capture = (Button) findViewById(R.id.button_camera);
+        camera.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 //                textView.setText("Nice!");
                 // here, counter will be incremented each time,and the picture taken by camera will be stored as 1.jpg,2.jpg and likewise.
