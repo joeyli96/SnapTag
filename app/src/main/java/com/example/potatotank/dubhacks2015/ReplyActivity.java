@@ -18,6 +18,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -48,6 +52,7 @@ public class ReplyActivity extends AppCompatActivity {
     private View mControlsView;
     private boolean mVisible;
     private TextView tagText;
+    private ImageView image;
     private int count = 0;
     private String dir;
 
@@ -58,12 +63,27 @@ public class ReplyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reply);
 
         findViewById(R.id.button_reply).setOnTouchListener(mDelayHideTouchListener);
-        ImageView image = (ImageView) findViewById(R.id.imageView_reply);
+        image = (ImageView) findViewById(R.id.imageView_reply);
         Button back = (Button) findViewById(R.id.button_back);
         Button reply = (Button) findViewById(R.id.button_reply);
         tagText = (TextView) findViewById(R.id.textView_tags);
 
         // get picture and tags from Firebase here
+        FirebaseClient f = FirebaseClient.getInstance();
+        f.ref.child("games/0/player1/lastImg").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String base64Image = (String) dataSnapshot.getValue();
+                Bitmap bitmap = FirebaseClient.decodeBase64(base64Image);
+                bitmap = Bitmap.createScaledBitmap(bitmap, 3000, 3000, true);
+                image.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 //        tagText.setText(tags[0] + ", " + tags[1] + ", " + tags[2]);
 
         dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/picFolder/";

@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.firebase.client.FirebaseApp;
+
 /**
  * An activity that either lets the user "submit" their picture or go back to the main activity.
  */
@@ -73,8 +75,14 @@ public class SubmitActivity extends AppCompatActivity {
                 // submits the picture; this should check for tag-matching
                 Clarifaier clarifaier = new Clarifaier(file);
                 String[] tags = clarifaier.getTags();
-                FirebaseClient.getInstance().AddTags(tags);
+                FirebaseClient f = FirebaseClient.getInstance();
+                f.AddTags(tags);
+
                 tagText.setText(tags[0] + ", " + tags[1] + ", " + tags[2]);
+
+                Bitmap bitmap = BitmapFactory.decodeFile(file);
+                String base64 = FirebaseClient.encodeTobase64(bitmap);
+                f.ref.child("games/0/player1/lastImg").setValue(base64);
             }
         });
     }

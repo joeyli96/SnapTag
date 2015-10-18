@@ -26,10 +26,11 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="27dp"
-            android:layout_height="27dp"
+            android:layout_width="match_parent"
+            android:layout_height="349dp"
             android:id="@+id/imageView_reply"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:scaleType="fitXY" />
 
         <Button
             android:layout_width="wrap_content"

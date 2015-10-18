@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
 //        final TextView textView = (TextView) findViewById(R.id.textView);
 //        Button capture = (Button) findViewById(R.id.button_camera);
-        Button loginP1 = (Button) findViewById(R.id.button_login1);
-        Button loginP2 = (Button) findViewById(R.id.button_login2);
+//        Button loginP1 = (Button) findViewById(R.id.button_login1);
+//        Button loginP2 = (Button) findViewById(R.id.button_login2);
 
         camera.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
